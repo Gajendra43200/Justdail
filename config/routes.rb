@@ -1,6 +1,10 @@
 Rails.application.routes.draw do
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
-
-  # Defines the root path route ("/")
-  # root "articles#index"
+  devise_for :admin_users, ActiveAdmin::Devise.config
+  ActiveAdmin.routes(self)
+  post 'login', to: 'authentication#login'
+  resources :reviews
+  resources :services
+  resource :users
+  get 'city', to: 'reviews#city'
+  get 'search', to: 'reviews#location_service_name'
 end
